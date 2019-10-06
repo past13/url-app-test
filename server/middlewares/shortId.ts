@@ -1,9 +1,7 @@
-import * as shortid from "shortid";
+import shortid from "shortid";
 
-const  ShortId = {
-    generate: () => {
-        return shortid.generate();
-    }
+const ShortId = {
+    generate: (): string => shortid.generate()
 };
 
 export default ShortId;

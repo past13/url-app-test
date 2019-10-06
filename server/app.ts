@@ -1,15 +1,11 @@
 import * as express from "express";
 import * as cors from "cors";
-
-import { Routes } from "./routes/urlRoutes";
 import * as mongoose from "mongoose";
-
+import { session }  from "cookie-session";
 import * as bodyParser from "body-parser";
 
-const connectOptions = {
-    keepAlive: true,
-    reconnectTries: Number.MAX_VALUE
-   };
+import connectOptions from './middlewares/connectionSettings';
+import { Routes } from "./routes/urlRoutes";
 
 class App {
     public app: express.Application;
@@ -27,7 +23,7 @@ class App {
 
     private mongoSetup(): void{
         mongoose.Promise = global.Promise;
-        mongoose.connect(this.mongoUrl, connectOptions, (err, db) => {
+        mongoose.connect(this.mongoUrl, connectOptions, (err: any) => {
         
         if (err) console.log(`Error`, err); 
             console.log(`Connected to MongoDB`);
@@ -41,19 +37,18 @@ class App {
 
         this.app.use(bodyParser.json());
 
-        // this.app.use(function(req, res, next) {
-        //     res.header("Access-Control-Allow-Origin", "*");
-        //     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-        //     res.header(
-        //         "Access-Control-Allow-Headers",
-        //         "Content-type,Accept,x-access-token,X-Key"
-        //     );
-        //     if (req.method == "OPTIONS") {
-        //         res.status(200).end();
-        //     } else {
-        //         next();
-        //     }
-        // });
+        const timeValue = 30;
+        var expiryDate = new Date(Date.now() + timeValue)
+        this.app.use(session({
+            name: 'session',
+            keys: ['key1', 'key2'],
+            cookie: {
+              secure: true,
+              httpOnly: true,
+              domain: 'localhost',
+              expires: expiryDate
+            }
+          }))
     }
 }
 

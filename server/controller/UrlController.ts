@@ -1,12 +1,13 @@
 import * as mongoose from 'mongoose';
 import { Request, Response } from 'express';
-import { UrlSchema } from './../models/UrlSchema';
 
 import IsValidUrl from './../middlewares/validUrl';
 import ShortId from './../middlewares/shortId';
 
-const errorUrl = 'http://localhost/error';
+import { UrlSchema } from './../models/UrlSchema';
 const Url = mongoose.model('UrlShorten', UrlSchema);
+
+const errorUrl = 'http://localhost/error';
 
 export default class UrlController {
 
