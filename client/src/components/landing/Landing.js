@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Landing.css";
-import { createShortUrl } from "../../APIHelper";
+import { createShortUrl } from "../../service";
 
 import constants from "../../config/constants";
 
