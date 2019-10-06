@@ -51,7 +51,7 @@ class Landing extends Component {
             });
           }, 0);
         })
-        .catch(error => {
+        .catch(() => {
           this.setState({
             showLoading: false,
             showApiError: true,
@@ -96,7 +96,6 @@ class Landing extends Component {
   }
 
   render() {
-    console.log(this.state.shortenUrl)
     return (
       <div className="landing">
         <div>
@@ -110,7 +109,6 @@ class Landing extends Component {
         </div>
         <input
           name="originalUrl"
-          // field="originalUrl"
           placeholder="Paste your link.."
           value={this.state.originalUrl}
           onChange={this.handleUserInput.bind(this)}
@@ -125,7 +123,6 @@ class Landing extends Component {
         </div>
 
         <input
-          // field="baseUrl"
           name="baseUrl"
           placeholder={this.state.exShortUrl}
           value={this.state.baseUrl}
