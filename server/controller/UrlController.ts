@@ -74,15 +74,4 @@ export default class UrlController {
             });
         });
     }
-
-    public async getUrls(req: Request, res: Response) {
-        const item = await Url.find({}, (err, url) => {
-            if(err){
-                res.send(err);
-            }
-            return url;
-        });
-
-        res.json(item);
-    }
 }

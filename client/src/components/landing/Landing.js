@@ -18,7 +18,7 @@ class Landing extends Component {
       showApiError: false,
       showLoading: false,
       exUrl:
-        "https://www.amazon.com/Apple-iPhone-GSM-Unlocked-5-8/dp/B075QMZH2L",
+        "https://www.amazon.com/",
       exShortUrl: constants.baseUrl
     };
     this.handleUserInput = this.handleUserInput.bind(this);
